@@ -1,6 +1,5 @@
-
-using BT_QLHS.Services;
-using BT_QLHS.Services;
+using BT_QLHS.Services.Implements;
+using BT_QLHS.Services.Repositories;
 //using WebApplication1.Services.Interfaces;
 
 namespace BT_QLHS
@@ -18,6 +17,8 @@ namespace BT_QLHS
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IStudent, StudentImplement>();
+            builder.Services.AddScoped<IClass, ClassImplement>();
+            builder.Services.AddScoped<IStudentClass, StudentClassImplement>();
 
             var app = builder.Build();
 

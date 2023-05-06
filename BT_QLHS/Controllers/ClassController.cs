@@ -6,19 +6,18 @@ namespace BT_QLHS.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class ClassController : ControllerBase
     {
-        //public IStudent _student;
-        private IStudent _students;
+        private IClass _classes;
 
-        public StudentsController(IStudent students)
+        public ClassController(IClass classes)
         {
-            _students = students;
+            _classes = classes;
         }
         [HttpGet]
         public IActionResult getAll()
         {
-            var result = _students.GetAll();
+            var result = _classes.GetAll();
             return Ok(result);
         }
         [HttpGet("{id}")]
@@ -26,7 +25,7 @@ namespace BT_QLHS.Controllers
         {
             try
             {
-                var result = _students.GetById(id);
+                var result = _classes.GetById(id);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -35,11 +34,11 @@ namespace BT_QLHS.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create(Class cls)
         {
             try
             {
-                _students.Create(student);
+                _classes.Create(cls);
                 return Ok("Them thanh cong!");
             }
             catch (Exception ex)
@@ -48,11 +47,11 @@ namespace BT_QLHS.Controllers
             }
         }
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Student student)
+        public IActionResult Update(int id, Class cls)
         {
             try
             {
-                _students.Update(id, student);
+                _classes.Update(id, cls);
                 return Ok();
 
             }
@@ -66,7 +65,7 @@ namespace BT_QLHS.Controllers
         {
             try
             {
-                _students.Delete(id);
+                _classes.Delete(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -74,12 +73,12 @@ namespace BT_QLHS.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("AddManyStudents")]
-        public IActionResult CreateMany(List<Student> students)
+        [HttpPost("AddManyClassses")]
+        public IActionResult CreateMany(List<Class> cls)
         {
             try
             {
-                _students.CreateListStudent(students);
+                _classes.CreateListStudent(cls);
                 return Ok("them thanh cong");
             }
             catch (Exception ex)
@@ -88,12 +87,12 @@ namespace BT_QLHS.Controllers
             }
 
         }
-        [HttpGet("GetPage")]
-        public IActionResult getPage(int PageNumber, int PageSize)
+        [HttpGet("getPage")]
+        public IActionResult GetPage(int PageNumber, int PageSize)
         {
             try
             {
-                var result = _students.GetPage(PageNumber, PageSize);
+                var result = _classes.GetPage(PageNumber, PageSize);
                 return Ok(result);
             }
             catch(Exception ex)
